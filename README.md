@@ -1,2 +1,2 @@
 # parallel
-Parallel Computing programs
+Parallel Computing Programs
