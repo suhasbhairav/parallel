@@ -30,7 +30,7 @@ int main(int argc, char *argv){
 
 	/* Send First two columns*/
 
-	/*	
+	/*		
 	count = 8;
 	blocklength = 2;
 	stride = 8;
@@ -38,6 +38,7 @@ int main(int argc, char *argv){
 	
 	MPI_Type_vector(count, blocklength, stride, MPI_INT, &new_type);
 	MPI_Type_commit(&new_type);
+	
 	*/
 	
 
@@ -63,12 +64,12 @@ int main(int argc, char *argv){
 	int block_arr[]={1,1,1,1,1,1,1,1};
 	int disp_arr[] = {0,9,18,27,36,45,54,63};	
 	*/
-
 	
-	//MPI_Type_indexed(count, block_arr, disp_arr, MPI_INT, &new_type);
-	//MPI_Type_commit(&new_type);
 	
-	/*
+	MPI_Type_indexed(count, block_arr, disp_arr, MPI_INT, &new_type);
+	MPI_Type_commit(&new_type);
+	
+	
 	if(rank == 0){
 		MPI_Send(&matrix[0][0],1, new_type,1, 1, MPI_COMM_WORLD);
 
@@ -76,7 +77,7 @@ int main(int argc, char *argv){
 
 		MPI_Recv(result, 1, new_type, 0, 1, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
 
-	}*/
+	}
 	/*
 	 for(i=0;i<8;i++){
                 for(j=0;j<8;j++){
@@ -88,8 +89,8 @@ int main(int argc, char *argv){
         }
 	*/
 	//MPI_Scatter(matrix, 1, new_type, result, 1, new_type, 0, MPI_COMM_WORLD);
-	int sendcount[] = {1,2,3,4,5,6,7,8};
-	MPI_Scatterv(matrix,sendcount,disp_arr, MPI_INT, result, 8, MPI_INT, 0, MPI_COMM_WORLD);
+	//int sendcount[] = {1,2,3,4,5,6,7,8};
+	//MPI_Scatterv(matrix,sendcount,disp_arr, MPI_INT, result, 8, MPI_INT, 0, MPI_COMM_WORLD);
 	printf("\n");
 	for(i=0;i<8;i++){
                 for(j=0;j<8;j++){
